@@ -1,0 +1,62 @@
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Scanner;
+
+public class MovieApp {
+	
+	public static ArrayList<Movie> movieList = new ArrayList<>();
+
+	public static void main(String[] args) {
+		Scanner scnr = new Scanner(System.in);
+		loadMovieList();
+		System.out.println("Welcome to the Movie List Application!");
+		System.out.println();
+		System.out.println("There are " + movieList.size() + " movies in this list.");
+		boolean repeat = true;
+		
+		while (repeat) {
+			System.out.print("What category are you interested in? ");
+			String userCategoryChoice = scnr.next();
+			
+			for (Movie x : movieList) {
+				if (userCategoryChoice.equalsIgnoreCase(x.getCategory())) {
+					System.out.println(x.getTitle());
+				}
+			}
+			
+			System.out.print("\n\nContinue? y/n ");
+		}
+		
+		
+		
+		
+		scnr.close();
+	}
+	
+	public static void loadMovieList() {
+		movieList.add(new Movie("The Big Lebowski", "Comedy"));
+		movieList.add(new Movie("A Quiet Place", "Horror"));
+		movieList.add(new Movie("Die Hard", "Action"));
+		movieList.add(new Movie("Before Sunrise", "Romance"));
+		movieList.add(new Movie("Midnight Special", "SciFi"));
+		movieList.add(new Movie("A Night at the Roxbury", "Comedy"));
+		movieList.add(new Movie("Hereditary", "Horror"));
+		movieList.add(new Movie("The Bourne Identity", "Action"));
+		movieList.add(new Movie("Arrival", "SciFi"));
+		movieList.add(new Movie("Her", "SciFi"));
+	}
+
+	public static void displayCategoryMenu() {
+		//load categoryList from movieList categories
+		ArrayList<String> categoryList = new ArrayList<>();
+		for (int i = 0; i < movieList.size(); i++) {
+			if (!categoryList.contains(movieList.get(i).getCategory())) {
+				categoryList.add(movieList.get(i).getCategory());
+			}
+		}
+		//alphabetize
+		Collections.sort(categoryList);
+		
+		
+	}
+}

@@ -1,0 +1,32 @@
+import java.util.ArrayList;
+
+public class MovieApp {
+	
+	public static ArrayList<Movie> movieList = new ArrayList<>();
+
+	public static void main(String[] args) {
+		loadMovieList();
+		System.out.println("Welcome to the Movie List Application!");
+		System.out.println();
+		System.out.println("There are " + movieList.size() + " movies in this list.");
+		
+
+	}
+	
+	public static void loadMovieList() {
+		movieList.add(new Movie("The Big Lebowski", "Comedy"));
+		movieList.add(new Movie("A Quiet Place", "Horror"));
+		movieList.add(new Movie("Die Hard", "Action"));
+		movieList.add(new Movie("Before Sunrise", "Romance"));
+		movieList.add(new Movie("Midnight Special", "SciFi"));
+		movieList.add(new Movie("A Night at the Roxbury", "Comedy"));
+		movieList.add(new Movie("Hereditary", "Horror"));
+		movieList.add(new Movie("The Bourne Identity", "Action"));
+		movieList.add(new Movie("Arrival", "SciFi"));
+		movieList.add(new Movie("Her", "SciFi"));
+	}
+
+	public static void displayCategoryMenu() {
+		
+	}
+}
