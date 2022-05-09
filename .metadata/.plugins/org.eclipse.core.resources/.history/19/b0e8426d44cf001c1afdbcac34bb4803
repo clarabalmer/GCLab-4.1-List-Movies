@@ -11,8 +11,12 @@ public class MovieApp {
 	public static Scanner scnr = new Scanner(System.in);
 
 	public static void main(String[] args) {
+		String empty = "5";
+		System.out.println(empty.isEmpty());
+		
 		loadMovieList();
-		System.out.println("Welcome to the Movie List Application!\n");
+		System.out.println("Welcome to the Movie List Application!");
+		System.out.println();
 		displayCategoryMenu();
 		System.out.println("\nThere are " + movieList.size() + " movies in this list.");
 		boolean repeat = true;
@@ -49,7 +53,7 @@ public class MovieApp {
 	
 	public static boolean optionToContinue() {
 		System.out.print("\nContinue? y/n ");
-		String userChoice = scnr.nextLine();
+		String userChoice = scnr.next();
 		if (userChoice.equalsIgnoreCase("n")) {
 			return false;
 		} else if (!userChoice.equalsIgnoreCase("y")) {
@@ -71,7 +75,7 @@ public class MovieApp {
 		movieList.add(new Movie("Arrival", "SciFi"));
 		movieList.add(new Movie("Her", "SciFi"));
 		
-		for (int i = 1; i <= 100; i++) {
+		for (int i = 1; i < 101; i++) {
 			movieList.add(MoviesIO.getMovie(i));
 		}
 		movieList.sort(Comparator.comparing(Movie::getTitle));

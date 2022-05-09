@@ -71,7 +71,7 @@ public class MovieApp {
 		movieList.add(new Movie("Arrival", "SciFi"));
 		movieList.add(new Movie("Her", "SciFi"));
 		
-		for (int i = 1; i <= 100; i++) {
+		for (int i = 1; i <= 101; i++) {
 			movieList.add(MoviesIO.getMovie(i));
 		}
 		movieList.sort(Comparator.comparing(Movie::getTitle));

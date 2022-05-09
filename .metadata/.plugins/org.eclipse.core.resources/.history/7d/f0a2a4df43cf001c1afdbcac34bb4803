@@ -11,34 +11,33 @@ public class MovieApp {
 	public static Scanner scnr = new Scanner(System.in);
 
 	public static void main(String[] args) {
+		String empty = "";
+		System.out.println(empty.isEmpty());
+		
 		loadMovieList();
-		System.out.println("Welcome to the Movie List Application!\n");
+		System.out.println("Welcome to the Movie List Application!");
+		System.out.println();
 		displayCategoryMenu();
 		System.out.println("\nThere are " + movieList.size() + " movies in this list.");
 		boolean repeat = true;
 		
 		while (repeat) {
 			System.out.print("Which category are you interested in? (Enter category number) ");
-			String responseHolder = scnr.nextLine();
-			if (responseHolder.isEmpty()) {
-				System.out.println("You've got to choose something!");
-			} else {
-				try {
-					int userCategoryChoice = Integer.valueOf(responseHolder);
-					if (1 > userCategoryChoice || categoryList.size() < userCategoryChoice) {
-						System.out.println("That isn't a recognized category. ");
-					} else {
-						String userCategoryString = categoryList.get(userCategoryChoice - 1);
-						for (Movie x : movieList) {
-							if (x.getCategory().equals(userCategoryString)) {
-								System.out.println(x.getTitle());
-							}
+			try {
+				int userCategoryChoice = scnr.nextInt();
+				if (1 > userCategoryChoice || categoryList.size() < userCategoryChoice) {
+					System.out.println("That isn't a recognized category. ");
+				} else {
+					String userCategoryString = categoryList.get(userCategoryChoice - 1);
+					for (Movie x : movieList) {
+						if (x.getCategory().equals(userCategoryString)) {
+							System.out.println(x.getTitle());
 						}
 					}
-				} catch (InputMismatchException e) {
-					System.out.println("That isn't a number.");
-					scnr.next();
 				}
+			} catch (InputMismatchException e) {
+				System.out.println("That isn't a number.");
+				scnr.next();
 			}
 			
 			repeat = optionToContinue();
@@ -49,7 +48,7 @@ public class MovieApp {
 	
 	public static boolean optionToContinue() {
 		System.out.print("\nContinue? y/n ");
-		String userChoice = scnr.nextLine();
+		String userChoice = scnr.next();
 		if (userChoice.equalsIgnoreCase("n")) {
 			return false;
 		} else if (!userChoice.equalsIgnoreCase("y")) {
@@ -71,7 +70,7 @@ public class MovieApp {
 		movieList.add(new Movie("Arrival", "SciFi"));
 		movieList.add(new Movie("Her", "SciFi"));
 		
-		for (int i = 1; i <= 100; i++) {
+		for (int i = 1; i < 101; i++) {
 			movieList.add(MoviesIO.getMovie(i));
 		}
 		movieList.sort(Comparator.comparing(Movie::getTitle));
